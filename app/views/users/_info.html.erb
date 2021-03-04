@@ -26,16 +26,14 @@
   </tr>
 </table>
 
-<div class="form-group">
+<div class="row">
   <% unless user == current_user %>
     <% if current_user.following?(user) %>
-      <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+      <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST, class: "btn btn-success" %>
     <% else %>
-      <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+      <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-success" %>
     <% end %>
+  <% else %>
+    <%= link_to '',edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
   <% end %>
-</div>
-
-<div class='row'>
-  <%= link_to '',edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
 </div>
