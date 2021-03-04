@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   devise_for :users
   resources :users, only: [:show,:index,:edit,:update, :following, :followers ]
   resources :books do
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   end
   root 'homes#top'
   get 'home/about' => 'homes#about', as: 'about'
+  get '/search' => 'search#search'
   resources :users do
     member do
     get :following, :followers
