@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
+  
   root 'homes#top'
   get 'home/about' => 'homes#about', as: 'about'
   get '/search' => 'search#search'
@@ -14,6 +15,9 @@ Rails.application.routes.draw do
     get :following, :followers
   end
   end
+  
+  post   '/favotite/:book_id' => 'favorites#favorite',   as: 'favorite'
+  delete '/favorite/:book_id' => 'favorites#unfavorite', as: 'unfavorite'
   
   post 'follow/:id' => 'relationships#create', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' # フォロー外す
